@@ -39,7 +39,7 @@ public class DishController {
     @GetMapping("/list")
     @Operation(summary = "根据分类id查询菜品")
     public Result<List<DishVO>> list(Long categoryId) {
-        String key = "dis_" + categoryId;
+        String key = "dish_" + categoryId;
 
         List<DishVO> list = (List<DishVO>) redisTemplate.opsForValue().get(key);
         if(!CollectionUtils.isEmpty(list)) {

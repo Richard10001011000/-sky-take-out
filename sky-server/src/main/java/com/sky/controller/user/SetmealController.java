@@ -37,6 +37,7 @@ public class SetmealController {
      */
     @GetMapping("/list")
     @Operation(summary = "根据分类id查询套餐")
+    @Cacheable(cacheNames = "setmealCache",key = "#categoryId")
     public Result<List<Setmeal>> list(Long categoryId) {
         LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Setmeal::getCategoryId, categoryId).eq(Setmeal::getStatus,StatusConstant.ENABLE);

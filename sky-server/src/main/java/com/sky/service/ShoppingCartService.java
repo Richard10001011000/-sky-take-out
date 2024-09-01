@@ -1,7 +1,10 @@
 package com.sky.service;
 
+import com.sky.dto.ShoppingCartDTO;
 import com.sky.entity.ShoppingCart;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author 12548
@@ -10,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ShoppingCartService extends IService<ShoppingCart> {
 
+    void subShoppingCart(ShoppingCartDTO shoppingCartDTO);
+
+    void cleanShoppingCart();
+
+    List<ShoppingCart> showShoppingCart();
+
+    void addShoppingCart(ShoppingCartDTO shoppingCartDTO);
 }

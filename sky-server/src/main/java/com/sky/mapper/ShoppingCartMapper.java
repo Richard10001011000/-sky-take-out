@@ -1,7 +1,10 @@
 package com.sky.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sky.entity.ShoppingCart;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author 12548
@@ -10,6 +13,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.sky.entity.ShoppingCart
 */
 public interface ShoppingCartMapper extends BaseMapper<ShoppingCart> {
+
+    default List<ShoppingCart> list(ShoppingCart shoppingCart){
+        LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>(shoppingCart);
+        queryWrapper.orderByDesc(ShoppingCart::getCreateTime);
+        return selectList(queryWrapper);
+    }
 
 }
 
