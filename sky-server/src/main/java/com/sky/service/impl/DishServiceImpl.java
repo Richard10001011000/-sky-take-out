@@ -88,7 +88,6 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish>
         BeanUtil.copyProperties(dishDTO, dish);
 
         dishMapper.insert(dish);
-
         List<DishFlavor> flavors = dishDTO.getFlavors();
         if(flavors != null && flavors.size() > 0) {
             flavors.forEach(dishFlavor -> dishFlavor.setDishId(dish.getId()));
