@@ -58,7 +58,10 @@ sky:
     access-key-id: ${sky.alioss.access-key-id}
     access-key-secret: ${sky.alioss.access-key-secret}
     bucket-name: ${sky.alioss.bucket-name}
-
+  shop:
+    address: 湖北省武汉市洪山区徐东大街18号
+  baidu:
+    ak: EFEEFFEFEFE
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:

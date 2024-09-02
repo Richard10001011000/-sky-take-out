@@ -18,8 +18,8 @@ sky:
     privateKeyFilePath: D:\apiclient_key.pem
     apiV3Key: CZBK51236435wxpay435434323FFDuv3
     weChatPayCertFilePath: D:\wechatpay_166D96F876F45C7D07CE98952A96EC980368ACFC.pem
-    notifyUrl: https://www.weixin.qq.com/wxpay/pay.php
-    refundNotifyUrl: https://www.weixin.qq.com/wxpay/pay.php
+    notifyUrl: https://6075814c.r20.cpolar.top/notify/paySuccess
+    refundNotifyUrl: https://6075814c.r20.cpolar.top/notify/refundSuccess
   alioss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
     access-key-id: LTAI5tPeFLzsPPT8gG3LPW64

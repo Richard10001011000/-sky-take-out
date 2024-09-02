@@ -10,4 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AddressBookService extends IService<AddressBook> {
 
+    void setDefault(AddressBook addressBook);
 }

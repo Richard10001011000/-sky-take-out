@@ -1,7 +1,10 @@
 package com.sky.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sky.entity.OrderDetail;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author 12548
@@ -11,6 +14,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface OrderDetailMapper extends BaseMapper<OrderDetail> {
 
+    default List<OrderDetail> getByOrderId(Long id){
+        LambdaQueryWrapper<OrderDetail> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(OrderDetail::getOrderId, id);
+        return selectList(queryWrapper);
+    }
 }
 
 
