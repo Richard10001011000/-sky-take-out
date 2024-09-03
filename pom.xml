@@ -26,8 +26,6 @@
         <druid>1.2.23</druid>
         <mysql>8.0.33</mysql>
         <aliyun.sdk.oss>3.10.2</aliyun.sdk.oss>
-
-        <commons.lang>2.6</commons.lang>
         <poi>3.16</poi>
     </properties>
     <dependencyManagement>
@@ -101,6 +99,17 @@
                 <groupId>com.github.wechatpay-apiv3</groupId>
                 <artifactId>wechatpay-apache-httpclient</artifactId>
                 <version>0.4.8</version>
+            </dependency>
+            <!-- poi -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi}</version>
             </dependency>
 
         </dependencies>
