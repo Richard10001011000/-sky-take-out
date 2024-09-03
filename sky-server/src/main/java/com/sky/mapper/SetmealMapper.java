@@ -1,8 +1,13 @@
 package com.sky.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.yulichang.base.MPJBaseMapper;
+import com.sky.entity.Dish;
+import com.sky.entity.Orders;
 import com.sky.entity.Setmeal;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.Map;
 
 /**
 * @author 12548
@@ -12,6 +17,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface SetmealMapper extends MPJBaseMapper<Setmeal> {
 
+    default Integer countByMap(Map map){
+        LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(map.get("status")!=null,Setmeal::getStatus,map.get("status"))
+                .eq(map.get("categoryId")!=null,Setmeal::getCategoryId,map.get("categoryId"));
+        return selectCount(queryWrapper).intValue();
+    }
 }
 
 

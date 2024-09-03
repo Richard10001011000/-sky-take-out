@@ -23,6 +23,7 @@ import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.OrderSubmitVO;
 import com.sky.vo.OrderVO;
+import com.sky.websocket.WebSocketServer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Order;
@@ -67,7 +68,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders>
     @Value("${sky.baidu.ak}")
     private String ak;
 
-//    private WebSocketServer webSocketServer;
+    private final WebSocketServer webSocketServer;
 
     @Override
     public OrderSubmitVO submitOrder(OrdersSubmitDTO ordersSubmitDTO) {
@@ -237,18 +238,18 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders>
 
     @Override
     public void reminder(Long id) {
-////        查询订单是否存在
-//        Orders orders = orderMapper.selectById(id);
-//        if (orders == null) {
-//            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
-//        }
-//
-////        基于WebSocket实现催单
-//        HashMap map = new HashMap();
-//        map.put("type", 2);
-//        map.put("orderId", id);
-//        map.put("content", "订单号：" + orders.getNumber());
-//        webSocketServer.sendToAllClient(JSON.toJSONString(map));
+//        查询订单是否存在
+        Orders orders = orderMapper.selectById(id);
+        if (orders == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+
+//        基于WebSocket实现催单
+        HashMap map = new HashMap();
+        map.put("type", 2);
+        map.put("orderId", id);
+        map.put("content", "订单号：" + orders.getNumber());
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));
     }
 
     @Override
@@ -275,7 +276,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders>
         map.put("content", "订单号：" + outTradeNo);
 
 //        通过WebSocket实现来电提醒，向客户端浏览器推送消息
-//        webSocketServer.sendToAllClient(JSON.toJSONString(map));
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));
     }
 
     @Override

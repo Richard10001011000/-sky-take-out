@@ -1,7 +1,11 @@
 package com.sky.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.sky.entity.Orders;
 import com.sky.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.Map;
 
 /**
 * @author 12548
@@ -11,6 +15,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserMapper extends BaseMapper<User> {
 
+    default Integer countByMap(Map map){
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.ge(map.get("begin")!=null,User::getCreateTime,map.get("begin"))
+                .le(map.get("end")!=null,User::getCreateTime,map.get("end"));
+        return selectCount(queryWrapper).intValue();
+    }
 }
 
 
